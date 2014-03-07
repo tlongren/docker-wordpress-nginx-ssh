@@ -16,7 +16,7 @@ if [ ! -f /usr/share/nginx/www/wp-config.php ]; then
   echo $WORDPRESS_PASSWORD > /wordpress-db-pw.txt
 
   #Update linux user password to the new random one
-  usermod -p $(openssl passwd -1 $SSH_PASSWORD) wordpress
+  usermod -p $(openssl passwd -1 $SSH_PASSWORD) -s /bin/bash wordpress
 
   sed -e "s/database_name_here/$WORDPRESS_DB/
   s/username_here/$WORDPRESS_DB/
