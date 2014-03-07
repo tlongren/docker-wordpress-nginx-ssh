@@ -10,7 +10,7 @@ RUN ln -sf /bin/true /sbin/initctl
 RUN mkdir /var/run/sshd
 
 # Basic Requirements
-RUN apt-get -y install mysql-server mysql-client nginx php5-fpm php5-mysql php-apc pwgen python-setuptools curl git unzip openssh-server
+RUN apt-get -y install mysql-server mysql-client nginx php5-fpm php5-mysql php-apc pwgen python-setuptools curl git unzip openssh-server openssl
 
 # Wordpress Requirements
 RUN apt-get -y install php5-curl php5-gd php5-intl php-pear php5-imagick php5-imap php5-mcrypt php5-memcache php5-ming php5-ps php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl
@@ -36,6 +36,9 @@ ADD ./nginx-site.conf /etc/nginx/sites-available/default
 # Supervisor Config
 RUN /usr/bin/easy_install supervisor
 ADD ./supervisord.conf /etc/supervisord.conf
+
+#Add system user for Wordpress
+RUN useradd -M -p $(openssl passwd -1 'temp') wordpress 
 
 # Install Wordpress
 ADD http://wordpress.org/latest.tar.gz /usr/share/nginx/latest.tar.gz
