@@ -46,7 +46,8 @@ RUN cd /usr/share/nginx/ && tar xvf latest.tar.gz && rm latest.tar.gz
 RUN mv /usr/share/nginx/www/5* /usr/share/nginx/wordpress
 RUN rm -rf /usr/share/nginx/www
 RUN mv /usr/share/nginx/wordpress /usr/share/nginx/www
-RUN chown -R www-data:www-data /usr/share/nginx/www
+RUN chown -R wordpress:www-data /usr/share/nginx/www
+RUN chmod -R 777 /usr/share/nginx/www/wp-content
 
 # Wordpress Initialization and Startup Script
 ADD ./start.sh /start.sh
