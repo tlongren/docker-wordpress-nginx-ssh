@@ -1,17 +1,15 @@
-# docker-wordpress-nginx
+# docker-wordpress-nginx-ssh
 
-A Dockerfile that installs the latest wordpress, nginx, php-apc and php-fpm.
+A Dockerfile that installs the latest wordpress, nginx, php-apc, php-fpm ans openssh.
 
-NB: A big thanks to [jbfink](https://github.com/jbfink/docker-wordpress) who did most of the hard work on the wordpress parts!
-
-You can check out his [Apache version here](https://github.com/jbfink/docker-wordpress).
+This is a modified fork from [eugeneware](https://github.com/eugeneware/docker-wordpress-nginx). All credits should go to him.
 
 ## Installation
 
 ```
-$ git clone https://github.com/eugeneware/docker-wordpress-nginx.git
-$ cd docker-wordpress-nginx
-$ sudo docker build -t="docker-wordpress-nginx" .
+$ git clone https://github.com/oskarhane/docker-wordpress-nginx-ssh.git
+$ cd docker-wordpress-nginx-ssh
+$ sudo docker build -t="docker-wordpress-nginx-ssh" .
 ```
 
 ## Usage
@@ -19,7 +17,7 @@ $ sudo docker build -t="docker-wordpress-nginx" .
 To spawn a new instance of wordpress:
 
 ```bash
-$ sudo docker run -p 80 -d docker-wordpress-nginx
+$ sudo docker run -p 80 -p 22 -d docker-wordpress-nginx-ssh
 ```
 
 You'll see an ID output like:
@@ -42,4 +40,10 @@ You can the visit the following URL in a browser on your host machine to get sta
 
 ```
 http://127.0.0.1:<port>
+```
+
+To get the SSH user `wordpress`'s password so you can login and edit files, check the top of the docker container logs for it.
+
+```
+$ docker logs <container-id>
 ```
