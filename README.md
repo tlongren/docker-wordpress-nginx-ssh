@@ -17,7 +17,7 @@ $ sudo docker build -t="docker-wordpress-nginx-ssh" .
 To spawn a new instance of wordpress:
 
 ```bash
-$ sudo docker run -p 80 -p 22 -d docker-wordpress-nginx-ssh
+$ sudo docker run -p 80 -p 22 -d -t docker-wordpress-nginx-ssh
 ```
 
 You'll see an ID output like:
