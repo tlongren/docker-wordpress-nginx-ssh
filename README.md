@@ -1,6 +1,6 @@
 # docker-wordpress-nginx-ssh
 
-A Dockerfile that installs the latest wordpress, nginx, php-apc, php-fpm ans openssh.
+A Dockerfile that installs the latest wordpress, nginx, php-apc, php-fpm and openssh.
 
 This is a modified fork from [eugeneware](https://github.com/eugeneware/docker-wordpress-nginx). All credits should go to him.
 
