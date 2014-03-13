@@ -38,11 +38,11 @@ RUN /usr/bin/easy_install supervisor
 ADD ./supervisord.conf /etc/supervisord.conf
 
 #Add system user for Wordpress
-RUN useradd -M -p $(openssl passwd -1 'temp') -G sudo wordpress 
+RUN useradd -m -d /home/wordpress -p $(openssl passwd -1 'temp') -G sudo -s /bin/bash wordpress 
+RUN ln -s /usr/share/nginx/www /home/wordpress/www
 
 # SSH security, turn off root login
 RUN sed -i -e "s/PermitRootLogin\syes/PermitRootLogin no/g" /etc/ssh/sshd_config
-RUN sed -i -e "s/HostbasedAuthentication\sno/HostbasedAuthentication yes/g" /etc/ssh/sshd_config
 
 # Install Wordpress
 ADD http://wordpress.org/latest.tar.gz /usr/share/nginx/latest.tar.gz
