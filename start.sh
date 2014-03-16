@@ -52,6 +52,8 @@ ENDL
 
   chown wordpress:www-data /usr/share/nginx/www/wp-config.php
 
+  echo "define('FS_METHOD', 'direct');" >> /usr/share/nginx/www/wp-config.php
+
   mysqladmin -u root password $MYSQL_PASSWORD
   mysql -uroot -p$MYSQL_PASSWORD -e "CREATE DATABASE wordpress; GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost' IDENTIFIED BY '$WORDPRESS_PASSWORD'; FLUSH PRIVILEGES;"
   killall mysqld
