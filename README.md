@@ -1,6 +1,7 @@
 # docker-wordpress-nginx-ssh
 
-A Dockerfile that installs the latest wordpress, nginx, php-apc, php-fpm and openssh.
+A Dockerfile that installs the latest wordpress, nginx, php-apc, php-fpm and openssh.  
+Now with memcached caching straight from NGiNX!
 
 This is a modified fork from [eugeneware](https://github.com/eugeneware/docker-wordpress-nginx). All credits should go to him.
 
@@ -29,6 +30,9 @@ This command returns the container ID, which you can use to find the external po
 You can the visit the following URL in a browser on your host machine to get started:
 
     http://127.0.0.1:<port>
+
+To enable memcached caching straight from NGiNX, goto WP-FFPC settings page and press the save button. Thats it.
+
 
 To get the SSH user `wordpress`'s password so you can login and edit files, check the top of the docker container logs for it.
 

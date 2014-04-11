@@ -33,7 +33,13 @@ if [ ! -f /usr/share/nginx/www/wp-config.php ]; then
   # Download nginx helper plugin
   curl -O `curl -i -s http://wordpress.org/plugins/nginx-helper/ | egrep -o "http://downloads.wordpress.org/plugin/[^']+"`
   unzip nginx-helper.*.zip -d /usr/share/nginx/www/wp-content/plugins
-  chown -R wordpress:wordpress /usr/share/nginx/www/wp-content/plugins/nginx-helper
+
+  curl -O `curl -i -s http://wordpress.org/plugins/wp-ffpc/ | egrep -o "http://downloads.wordpress.org/plugin/[^']+"`
+  unzip wp-ffpc.*.zip -d /usr/share/nginx/www/wp-content/plugins
+  chown -R wordpress:www-data /usr/share/nginx/www/wp-content/plugins
+
+  sed -i -e $"s/define('WP_DEBUG', false);/define('WP_DEBUG', false);\ndefine('WP_CACHE', true);\ndefine('FS_METHOD', 'direct');/" /usr/share/nginx/www/wp-config.php
+
 
   # Activate nginx plugin and set up pretty permalink structure once logged in
   cat << ENDL >> /usr/share/nginx/www/wp-config.php
@@ -41,7 +47,7 @@ if [ ! -f /usr/share/nginx/www/wp-config.php ]; then
 if ( count( \$plugins ) === 0 ) {
   require_once(ABSPATH .'/wp-admin/includes/plugin.php');
   \$wp_rewrite->set_permalink_structure( '/%postname%/' );
-  \$pluginsToActivate = array( 'nginx-helper/nginx-helper.php' );
+  \$pluginsToActivate = array( 'nginx-helper/nginx-helper.php' , 'wp-ffpc/wp-ffpc.php');
   foreach ( \$pluginsToActivate as \$plugin ) {
     if ( !in_array( \$plugin, \$plugins ) ) {
       activate_plugin( '/usr/share/nginx/www/wp-content/plugins/' . \$plugin );
@@ -52,12 +58,11 @@ ENDL
 
   chown wordpress:www-data /usr/share/nginx/www/wp-config.php
 
-  echo "define('FS_METHOD', 'direct');" >> /usr/share/nginx/www/wp-config.php
-
   mysqladmin -u root password $MYSQL_PASSWORD
   mysql -uroot -p$MYSQL_PASSWORD -e "CREATE DATABASE wordpress; GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost' IDENTIFIED BY '$WORDPRESS_PASSWORD'; FLUSH PRIVILEGES;"
   killall mysqld
 fi
 
 # start all the services
+service memcached start
 /usr/local/bin/supervisord -n
