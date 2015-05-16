@@ -13,6 +13,7 @@ RUN apt-get update
 
 # Basic Requirements
 RUN apt-get -y install mysql-server mysql-client
+RUN apt-get update
 RUN apt-get -y install memcached nginx php5-fpm php5-mysql php-apc pwgen python-setuptools curl git unzip openssh-server openssl
 
 # Wordpress Requirements
