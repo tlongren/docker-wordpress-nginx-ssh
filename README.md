@@ -1,1 +1,0 @@
-# docker-wordpress-nginx-ssh
