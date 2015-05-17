@@ -4,6 +4,7 @@ MAINTAINER Tyler Longren <tyler@longren.io>
 # Keep upstart from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
+RUN mkdir /var/run/sshd
 
 # Let the conatiner know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
@@ -67,6 +68,6 @@ EXPOSE 80
 EXPOSE 22
 
 # volume for mysql database and wordpress install
-VOLUME ["/var/lib/mysql", "/home/wordpress/www"]
+VOLUME ["/var/lib/mysql", "/usr/share/nginx/www", "/var/run/sshd"]
 
 CMD ["/bin/bash", "/start.sh"]
