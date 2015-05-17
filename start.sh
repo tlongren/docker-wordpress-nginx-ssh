@@ -7,11 +7,16 @@ if [ ! -f /usr/share/nginx/www/wp-config.php ]; then
   WORDPRESS_DB="wordpress"
   MYSQL_PASSWORD=`pwgen -c -n -1 12`
   WORDPRESS_PASSWORD=`pwgen -c -n -1 12`
+  SSH_PASSWORD=`pwgen -c -n -1 12`
   #This is so the passwords show up in logs.
   echo mysql root password: $MYSQL_PASSWORD
   echo wordpress password: $WORDPRESS_PASSWORD
+  echo ssh password: $SSH_PASSWORD
   echo $MYSQL_PASSWORD > /mysql-root-pw.txt
   echo $WORDPRESS_PASSWORD > /wordpress-db-pw.txt
+
+  #Update linux user password to the new random one
+  usermod -p $(openssl passwd -1 $SSH_PASSWORD) wordpress
 
   sed -e "s/database_name_here/$WORDPRESS_DB/
   s/username_here/$WORDPRESS_DB/
@@ -45,7 +50,7 @@ if ( count( \$plugins ) === 0 ) {
 }
 ENDL
 
-  chown www-data:www-data /usr/share/nginx/www/wp-config.php
+  chown wordpress:www-data /usr/share/nginx/www/wp-config.php
 
   mysqladmin -u root password $MYSQL_PASSWORD
   mysql -uroot -p$MYSQL_PASSWORD -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_PASSWORD' WITH GRANT OPTION; FLUSH PRIVILEGES;"
