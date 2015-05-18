@@ -14,7 +14,15 @@ The easiest way to get this docker image installed is to pull the latest version
 $ docker pull tlongren/docker-wordpress-nginx-ssh
 ```
 
-If you'd like to build the image yourself then:
+To grab the *dev* tag, where I'm implementing SSH access, pull it from the Docker Hub Registry:
+
+```bash
+$ docker pull tlongren/docker-wordpress-nginx-ssh:dev
+```
+
+The *master* tag is considered to be stable, while *dev* is not stable, probably. Keep track of changes in dev via GitHub if you'd like, and tell me what I'm doing wrong. But only if you have a better approach. :)
+
+If you'd like to build the image yourself:
 
 ```bash
 $ git clone https://github.com/tlongren/docker-wordpress-nginx-ssh.git
@@ -41,10 +49,10 @@ After starting the container docker-wordpress-nginx-ssh checks to see if it has 
 ```
 $ sudo docker ps
 
-0.0.0.0:80 -> 80/tcp docker-name
+0.0.0.0:80->80/tcp, 3306/tcp, 0.0.0.0:2222->22/tcp
 ```
 
-You can the visit the following URL in a browser on your host machine to get started:
+You can then visit the following URL in a browser on your host machine to get started:
 
 ```
 http://127.0.0.1:80
@@ -53,7 +61,7 @@ http://127.0.0.1:80
 You can also SSH to your container on 127.0.0.1:2222. You'll need the password for the wordpress user though, you can get it by viewing the logs. Try this command:
 
 ```
-docker logs docker-name | grep ssh\ password
+$ sudo docker logs docker-name | grep ssh\ password
 
 ssh password: ea9afuiB7yoo
 ```
