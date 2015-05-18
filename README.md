@@ -24,10 +24,10 @@ $ sudo docker build -t="tlongren/docker-wordpress-nginx-ssh"
 
 ## Usage
 
-To spawn a new instance of wordpress on port 80.  The -p 80:80 maps the internal docker port 80 to the outside port 80 of the host machine.
+The -p 80:80 maps the internal docker port 80 to the outside port 80 of the host machine.
 
 ```bash
-$ sudo docker run -p 80:80 --name docker-name -d tlongren/docker-wordpress-nginx-ssh
+$ sudo docker run -p 80:80 -p 2222:22 --name docker-name -d tlongren/docker-wordpress-nginx-ssh
 ```
 
 Start your newly created container, named *docker-name*.
@@ -48,6 +48,20 @@ You can the visit the following URL in a browser on your host machine to get sta
 
 ```
 http://127.0.0.1:80
+```
+
+You can also SSH to your container on 127.0.0.1:2222. You'll need the password for the wordpress user though, you can get it by viewing the logs. Try this command:
+
+```
+docker logs exoticwhips | grep ssh\ password
+
+ssh password: ea9afuiB7yoo
+```
+
+Now that you have the password for the wordpress user, you've got everything needed to setup your SFTP client to connect. We'll go ahead from the command line:
+
+```
+$ ssh -p 2222 wordpress@127.0.0.1
 ```
 
 You can view logs like this:
