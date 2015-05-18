@@ -20,7 +20,7 @@ To grab the *dev* tag, where I'm implementing SSH access, pull it from the Docke
 $ docker pull tlongren/docker-wordpress-nginx-ssh:dev
 ```
 
-The *master* tag is considered to be stable, while *dev* is not stable, probably. Keep track of changes in dev via GitHub if you'd like, and tell me what I'm doing wrong. But only if you have a better approach. :)
+The *latest* tag is considered to be stable (and is the default), while *dev* is not stable, probably. Keep track of changes in dev via GitHub if you'd like, and tell me what I'm doing wrong. But only if you have a better approach. :)
 
 If you'd like to build the image yourself:
 
