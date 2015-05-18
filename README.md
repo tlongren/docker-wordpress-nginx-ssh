@@ -53,7 +53,7 @@ http://127.0.0.1:80
 You can also SSH to your container on 127.0.0.1:2222. You'll need the password for the wordpress user though, you can get it by viewing the logs. Try this command:
 
 ```
-docker logs exoticwhips | grep ssh\ password
+docker logs docker-name | grep ssh\ password
 
 ssh password: ea9afuiB7yoo
 ```
