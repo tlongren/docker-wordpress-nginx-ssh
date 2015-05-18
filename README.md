@@ -58,19 +58,14 @@ You can then visit the following URL in a browser on your host machine to get st
 http://127.0.0.1:80
 ```
 
-You can also SSH to your container on 127.0.0.1:2222. You'll need the password for the wordpress user though, you can get it by viewing the logs. Try this command:
-
-```
-$ sudo docker logs docker-name | grep ssh\ password
-
-ssh password: ea9afuiB7yoo
-```
-
-Now that you have the password for the wordpress user, you've got everything needed to setup your SFTP client to connect. We'll go ahead from the command line:
+You can also SSH to your container on 127.0.0.1:2222. The default password is *wordpress*, and can also be found in .ssh-default-pass.
 
 ```
 $ ssh -p 2222 wordpress@127.0.0.1
 ```
+
+Now that you've got SSH access, you can setup your FTP client the same way, or the SFTP Sublime Text plugin, for easy access to files.
+
 
 You can view logs like this:
 
