@@ -51,7 +51,7 @@ if ( count( \$plugins ) === 0 ) {
 }
 ENDL
 
-  chown wordpress:www-data /usr/share/nginx/www/wp-config.php
+  chown www-data:www-data /usr/share/nginx/www/wp-config.php
 
   mysqladmin -u root password $MYSQL_PASSWORD
   mysql -uroot -p$MYSQL_PASSWORD -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_PASSWORD' WITH GRANT OPTION; FLUSH PRIVILEGES;"
