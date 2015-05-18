@@ -1,5 +1,5 @@
 # docker-wordpress-nginx-ssh
-A Dockerfile that installs the latest wordpress, nginx, php-apc and php-fpm, and openssh. Based heavily on [this](https://registry.hub.docker.com/u/oskarhane/docker-wordpress-nginx-ssh/).
+A Dockerfile that installs the latest wordpress, nginx, php-apc and php-fpm, and openssh. Based heavily on [this](https://registry.hub.docker.com/u/oskarhane/docker-wordpress-nginx-ssh/). **NOW INCLUDING A WORKING SSH SETUP!**
 
 ###Todo:
 
