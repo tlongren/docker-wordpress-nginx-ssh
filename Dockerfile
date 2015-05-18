@@ -43,12 +43,12 @@ RUN /usr/bin/easy_install supervisor-stdout
 ADD ./supervisord.conf /etc/supervisord.conf
 
 #Add system user for Wordpress
-RUN useradd -m -d /home/wordpress -p $(openssl passwd -1 'temp') -G sudo -s /bin/bash wordpress
-RUN usermod -a -G www-data wordpress
-RUN ln -s /usr/share/nginx/www /home/wordpress/www
+RUN useradd -m -d /home/wordpress -p $(openssl passwd -1 'temp') -G root -s /bin/bash wordpress
+RUN usermod -a -G www-data wordpress \
+    && ln -s /usr/share/nginx/www /home/wordpress/www
 
-# SSH security, turn off root login
-RUN sed -i -e "s/PermitRootLogin\syes/PermitRootLogin no/g" /etc/ssh/sshd_config
+# SSH: Enable root Logins
+RUN sed -i -e "s/PermitRootLogin\sno/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
 # Install Wordpress
 ADD http://wordpress.org/latest.tar.gz /usr/share/nginx/latest.tar.gz
@@ -56,7 +56,7 @@ RUN cd /usr/share/nginx/ && tar xvf latest.tar.gz && rm latest.tar.gz
 RUN mv /usr/share/nginx/html/5* /usr/share/nginx/wordpress
 RUN rm -rf /usr/share/nginx/www
 RUN mv /usr/share/nginx/wordpress /usr/share/nginx/www
-RUN chown -R wordpress:www-data /usr/share/nginx/www
+RUN chown -R www-data:www-data /usr/share/nginx/www
 
 # Wordpress Initialization and Startup Script
 ADD ./start.sh /start.sh
