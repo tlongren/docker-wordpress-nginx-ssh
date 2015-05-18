@@ -3,7 +3,7 @@ A Dockerfile that installs the latest wordpress, nginx, php-apc and php-fpm, and
 
 ###Todo:
 
-1. Add OpenSSH
+1. Tighten permissions up a bit maybe, may not be worth the effort.
 2. Requests?
 
 ## Installation
