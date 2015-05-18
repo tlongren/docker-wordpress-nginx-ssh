@@ -42,26 +42,29 @@ RUN /usr/bin/easy_install supervisor
 RUN /usr/bin/easy_install supervisor-stdout
 ADD ./supervisord.conf /etc/supervisord.conf
 
-#Add system user for Wordpress
-RUN useradd -m -d /home/wordpress -p $(openssl passwd -1 'temp') -G root -s /bin/bash wordpress
-RUN usermod -a -G www-data wordpress \
+# Add system user for Wordpress
+RUN useradd -m -d /home/wordpress -p $(openssl passwd -1 'wordpress') -G root -s /bin/bash wordpress \
+    && usermod -a -G www-data wordpress \
     && ln -s /usr/share/nginx/www /home/wordpress/www
-
-# SSH: Enable root Logins
-RUN sed -i -e "s/PermitRootLogin\sno/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
 # Install Wordpress
 ADD http://wordpress.org/latest.tar.gz /usr/share/nginx/latest.tar.gz
-RUN cd /usr/share/nginx/ && tar xvf latest.tar.gz && rm latest.tar.gz
-RUN mv /usr/share/nginx/html/5* /usr/share/nginx/wordpress
-RUN rm -rf /usr/share/nginx/www
-RUN mv /usr/share/nginx/wordpress /usr/share/nginx/www
-RUN chown -R www-data:www-data /usr/share/nginx/www
+RUN cd /usr/share/nginx/ \
+    && tar xvf latest.tar.gz \
+    && rm latest.tar.gz
+
+RUN mv /usr/share/nginx/html/5* /usr/share/nginx/wordpress \
+    && rm -rf /usr/share/nginx/www
+
+RUN mv /usr/share/nginx/wordpress /usr/share/nginx/www \
+    && chown -R www-data:www-data /usr/share/nginx/www \
+    && chmod -R 775 /usr/share/nginx/www
 
 # Wordpress Initialization and Startup Script
 ADD ./start.sh /start.sh
 RUN chmod 755 /start.sh
 
+#NETWORK PORTS
 # private expose
 EXPOSE 3306
 EXPOSE 80
