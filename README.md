@@ -24,7 +24,7 @@ $ sudo docker build -t="tlongren/docker-wordpress-nginx-ssh"
 
 ## Usage
 
-The -p 80:80 maps the internal docker port 80 to the outside port 80 of the host machine.
+The -p 80:80 maps the internal docker port 80 to the outside port 80 of the host machine. The other -p sets up sshd on port 2222.
 
 ```bash
 $ sudo docker run -p 80:80 -p 2222:22 --name docker-name -d tlongren/docker-wordpress-nginx-ssh
