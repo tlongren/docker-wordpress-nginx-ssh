@@ -6,8 +6,10 @@ A Dockerfile that installs the latest wordpress, nginx, php-apc and php-fpm, and
 
 ###Todo:
 
-1. Tighten permissions up a bit maybe, may not be worth the effort.
-2. Requests?
+1. Tighten permissions up a bit maybe, may not be worth the effort. If anyone has suggestions please [let me know](http://longren.io/contact/).
+2. Implement [Docker Compose](https://docs.docker.com/compose/) for a quicker setup.
+3. Clean up README.
+4. Requests?
 
 ## Installation
 
@@ -16,14 +18,6 @@ The easiest way to get this docker image installed is to pull the latest version
 ```bash
 $ docker pull tlongren/docker-wordpress-nginx-ssh
 ```
-
-To grab the *dev* tag, where I'm implementing SSH access, pull it from the Docker Hub Registry:
-
-```bash
-$ docker pull tlongren/docker-wordpress-nginx-ssh:dev
-```
-
-The *latest* tag is considered to be stable (and is the default), while *dev* is not stable, probably. Keep track of changes in dev via GitHub if you'd like, and tell me what I'm doing wrong. But only if you have a better approach. :)
 
 If you'd like to build the image yourself:
 
