@@ -6,7 +6,7 @@ A Dockerfile that installs the latest wordpress, nginx, php-apc and php-fpm, and
 
 ###Todo:
 
-1. Tighten permissions up a bit maybe, may not be worth the effort. If anyone has suggestions please [let me know](http://longren.io/contact/).
+1. Tighten permissions up a bit maybe, may not be worth the effort. If anyone has suggestions please [open an issue at GitHub](https://github.com/tlongren/docker-wordpress-nginx-ssh/).
 2. Implement [Docker Compose](https://docs.docker.com/compose/) for a quicker setup.
 3. Clean up README.
 4. Requests?
