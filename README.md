@@ -2,21 +2,22 @@
 
 [![Join the chat at https://gitter.im/tlongren/docker-wordpress-nginx-ssh](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tlongren/docker-wordpress-nginx-ssh?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-A Dockerfile that installs the latest wordpress, nginx, php-apc and php-fpm, and openssh. Based heavily on [this](https://registry.hub.docker.com/u/oskarhane/docker-wordpress-nginx-ssh/). **NOW INCLUDING A WORKING SSH SETUP!**
+A Dockerfile that installs the latest wordpress, nginx, php-apc and php-fpm, and openssh. Based heavily on [this](https://registry.hub.docker.com/u/oskarhane/docker-wordpress-nginx-ssh/).
 
 ###Todo:
 
-1. Tighten permissions up a bit maybe, may not be worth the effort. If anyone has suggestions please [open an issue at GitHub](https://github.com/tlongren/docker-wordpress-nginx-ssh/).
-2. Implement [Docker Compose](https://docs.docker.com/compose/) for a quicker setup.
-3. Clean up README.
-4. Requests?
+1. ~~Add OpenSSH~~
+2. Tighten permissions up a bit maybe, may not be worth the effort. If anyone has suggestions please leave a comment on [this GitHub issue](https://github.com/tlongren/docker-wordpress-nginx-ssh/issues/3).
+3. Implement [Docker Compose](https://docs.docker.com/compose/) for a quicker setup.
+4. Clean up README.
+5. Requests? Just make a comment on [this GitHub issue](https://github.com/tlongren/docker-wordpress-nginx-ssh/issues/4) if there's anything you'd like added or changed.
 
 ## Installation
 
-The easiest way to get this docker image installed is to pull the latest version from the [Docker Hub Registry](https://registry.hub.docker.com/u/tlongren/docker-wordpress-nginx-ssh/):
+The easiest way get up and running with this docker container is to pull the latest stable version from the [Docker Hub Registry](https://registry.hub.docker.com/u/tlongren/docker-wordpress-nginx-ssh/):
 
 ```bash
-$ docker pull tlongren/docker-wordpress-nginx-ssh
+$ docker pull tlongren/docker-wordpress-nginx-ssh:latest
 ```
 
 If you'd like to build the image yourself:
@@ -32,7 +33,7 @@ $ sudo docker build -t="tlongren/docker-wordpress-nginx-ssh"
 The -p 80:80 maps the internal docker port 80 to the outside port 80 of the host machine. The other -p sets up sshd on port 2222.
 
 ```bash
-$ sudo docker run -p 80:80 -p 2222:22 --name docker-name -d tlongren/docker-wordpress-nginx-ssh
+$ sudo docker run -p 80:80 -p 2222:22 --name docker-name -d tlongren/docker-wordpress-nginx-ssh:latest
 ```
 
 Start your newly created container, named *docker-name*.
