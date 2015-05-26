@@ -6,11 +6,10 @@ A Dockerfile that installs the latest wordpress, nginx, php-apc and php-fpm, and
 
 ###Todo:
 
-1. ~~Add OpenSSH~~
-2. Tighten permissions up a bit maybe, may not be worth the effort. If anyone has suggestions please leave a comment on [this GitHub issue](https://github.com/tlongren/docker-wordpress-nginx-ssh/issues/3).
-3. Implement [Docker Compose](https://docs.docker.com/compose/) for a quicker setup.
-4. Clean up README.
-5. Requests? Just make a comment on [this GitHub issue](https://github.com/tlongren/docker-wordpress-nginx-ssh/issues/4) if there's anything you'd like added or changed.
+1. Tighten permissions up a bit maybe, may not be worth the effort. If anyone has suggestions please leave a comment on [this GitHub issue](https://github.com/tlongren/docker-wordpress-nginx-ssh/issues/3).
+2. Implement [Docker Compose](https://docs.docker.com/compose/) for a quicker setup.
+3. Clean up README.
+4. Requests? Just make a comment on [this GitHub issue](https://github.com/tlongren/docker-wordpress-nginx-ssh/issues/4) if there's anything you'd like added or changed.
 
 ## Installation
 
