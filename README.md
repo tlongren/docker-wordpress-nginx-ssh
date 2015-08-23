@@ -71,3 +71,6 @@ You can view logs like this:
 ```
 $ sudo docker logs docker-name
 ```
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tlongren/docker-wordpress-nginx-ssh/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
