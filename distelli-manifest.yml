@@ -1,0 +1,26 @@
+tlongren/wordpress:
+
+  #The PkgInclude is to identify files that must be included in the application deployment: http://distel.li/pkgincludesection
+  PkgInclude:
+    - '*'
+
+  #The PreRelease section is for specifying build and pre-packaging steps: http://distel.li/prereleasesection
+  PreRelease:
+    - echo "Begin PreRelease"
+
+  #The PreInstall section occurs before install: distel.li/preinstallsection
+  PreInstall:
+    - echo "Begin PreInstall"
+    #- sudo apt-get -y update
+    #- sudo apt-get -y install php5
+    #- sudo apt-get -y install libapache2-mod-php5
+    #- sudo apt-get -y install apache2
+
+  #The PostInstall section occurs after install: http://distel.li/postinstallsection
+  PostInstall:
+    - echo "Begin PostInstall"
+    #- sudo cp -f ./webapp.php $HTML_DIR/
+
+  #The Start section starts a process that is not monitored: distel.li/execsection
+  Exec:
+    #- sudo service apache2 restart
