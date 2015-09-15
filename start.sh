@@ -1,6 +1,17 @@
 #!/bin/bash
 if [ ! -f /usr/share/nginx/www/wp-config.php ]; then
   #mysql has to be started this way as it doesn't work to call from /etc/init.d
+
+# Setup Mysql character to utf-8
+### Idea from http://outofcontrol.ca/blog/comments/change-mysql-5.5-default-character-set-to-utf8
+sed "/default-character-set/d"
+sed "/\[mysqld]/a skip-character-set-client-handshake" /etc/mysql/my.cnf
+sed "/\[mysqld]/a collation-server=utf8_unicode_ci" /etc/mysql/my.cnf
+sed "/\[mysqld]/a character-set-server=utf8" /etc/mysql/my.cnf
+sed "/\[mysqld]/a init_connect= 'SET NAMES utf8' " /etc/mysql/my.cnf
+sed "/\[mysqld]/a init_connect=‘SET collation_connection = utf8_unicode_ci' " /etc/mysql/my.cnf
+
+
   /usr/bin/mysqld_safe &
   sleep 10s
   # Here we generate random passwords (thank you pwgen!). The first two are for mysql users, the last batch for random keys in wp-config.php
