@@ -4,12 +4,12 @@ if [ ! -f /usr/share/nginx/www/wp-config.php ]; then
 
 # Setup Mysql character to utf-8
 ### Idea from http://outofcontrol.ca/blog/comments/change-mysql-5.5-default-character-set-to-utf8
-sed "/default-character-set/d"
-sed "/\[mysqld]/a skip-character-set-client-handshake" /etc/mysql/my.cnf
-sed "/\[mysqld]/a collation-server=utf8_unicode_ci" /etc/mysql/my.cnf
-sed "/\[mysqld]/a character-set-server=utf8" /etc/mysql/my.cnf
-sed "/\[mysqld]/a init_connect= 'SET NAMES utf8' " /etc/mysql/my.cnf
-sed "/\[mysqld]/a init_connect=‘SET collation_connection = utf8_unicode_ci' " /etc/mysql/my.cnf
+sed -i "/default-character-set/d"
+sed -i "/\[mysqld]/a skip-character-set-client-handshake" /etc/mysql/my.cnf
+sed -i "/\[mysqld]/a collation-server=utf8_unicode_ci" /etc/mysql/my.cnf
+sed -i "/\[mysqld]/a character-set-server=utf8" /etc/mysql/my.cnf
+sed -i "/\[mysqld]/a init_connect= 'SET NAMES utf8' " /etc/mysql/my.cnf
+sed -i "/\[mysqld]/a init_connect=‘SET collation_connection = utf8_unicode_ci' " /etc/mysql/my.cnf
 
 
   /usr/bin/mysqld_safe &
