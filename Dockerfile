@@ -45,6 +45,7 @@ ADD ./supervisord.conf /etc/supervisord.conf
 # Add system user for Wordpress
 RUN useradd -m -d /home/wordpress -p $(openssl passwd -1 'wordpress') -G root -s /bin/bash wordpress \
     && usermod -a -G www-data wordpress \
+    && usermod -a -G sudo wordpress \
     && ln -s /usr/share/nginx/www /home/wordpress/www
 
 # Install Wordpress
