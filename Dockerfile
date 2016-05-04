@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Tyler Longren <tyler@longren.io>
+MAINTAINER BaseBoxOrg <developer@basebox.org>
 
 # Keep upstart from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
