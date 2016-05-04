@@ -9,8 +9,8 @@ RUN mkdir /var/run/sshd
 # Let the conatiner know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update
-RUN apt-get -y upgrade
+RUN apt-get update && apt-get install -y python-software-properties
+RUN apt-get install -y language-pack-en-base && LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && apt-get update
 
 # Basic Requirements
 RUN apt-get -y install mysql-server mysql-client imagemagick graphicsmagick nginx php7.0-fpm php7.0-mysql php-apc pwgen python-setuptools curl git wget less unzip openssh-server openssl
