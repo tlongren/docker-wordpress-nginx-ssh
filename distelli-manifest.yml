@@ -1,4 +1,4 @@
-nittt/docker-wordpress-nginx-ssh:
+nittt/wordpress-all-in-one:
 
   #The PkgInclude is to identify files that must be included in the application deployment: http://distel.li/pkgincludesection
   PkgInclude:
@@ -15,6 +15,9 @@ nittt/docker-wordpress-nginx-ssh:
     #- sudo apt-get -y install php5
     #- sudo apt-get -y install libapache2-mod-php5
     #- sudo apt-get -y install apache2
+    ### Docker Build Commands ###
+
+  ### End Docker Build Commands ###
 
   #The PostInstall section occurs after install: http://distel.li/postinstallsection
   PostInstall:
