@@ -26,7 +26,7 @@ If you'd like to build the image yourself:
 ```bash
 $ git clone https://github.com/tlongren/docker-wordpress-nginx-ssh.git
 $ cd docker-wordpress-nginx-ssh
-$ sudo docker build -t="tlongren/docker-wordpress-nginx-ssh"
+$ sudo docker build -t="tlongren/docker-wordpress-nginx-ssh" .
 ```
 
 ## Usage
@@ -73,4 +73,3 @@ $ sudo docker logs docker-name
 ```
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tlongren/docker-wordpress-nginx-ssh/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
